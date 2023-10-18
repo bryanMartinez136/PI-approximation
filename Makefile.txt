@@ -1,0 +1,18 @@
+all: cpu gpu
+
+cpu: PiHist-cpu.c
+	g++ -o a.out PiHist-cpu.c
+
+gpu: PiHist-gpu.cu
+	nvcc -o b.out PiHist-gpu.cu
+
+run: cpu
+	./a.out pi-10million.txt 100000
+
+run_2: gpu
+	./b.out 1024 pi-10million.txt 100000
+
+clean:
+	rm -f a.out
+	rm -f b.out
+
