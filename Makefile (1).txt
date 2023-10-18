@@ -1,0 +1,17 @@
+all: cpu gpu
+
+cpu: PiMC-cpu.c
+	g++ -o a.out PiMC-cpu.c
+
+gpu: PiMC-gpu.cu
+	nvcc -o b.out PiMC-gpu.cu
+
+run: cpu
+	./a.out 1024
+
+run_2: gpu
+	./b.out 1024
+
+clean:
+	rm -f a.out
+	rm -f b.out
